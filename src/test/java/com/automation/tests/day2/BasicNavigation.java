@@ -19,21 +19,22 @@ public class BasicNavigation {
 
         String title = driver.getTitle(); //returns <title>something</title> text
         String expectedTitle = "Google";
-        System.out.println("Title is " + title);
+        System.out.println("Title: " + driver.getTitle());
+        System.out.println("URL: " + driver.getCurrentUrl());
 
         if(expectedTitle.equals(title)){
-            System.out.println("AMAZON TEST PASSED");
+            System.out.println("GOOGLE TEST PASSED");
         }else{
-            System.out.println("AMAZON TEST FAILED");
+            System.out.println("GOOGLE TEST FAILED");
         }
 
         driver.navigate().to("http://amazon.com");
         Thread.sleep(3000);
 
         if(driver.getTitle().toLowerCase().contains("amazon")){
-            System.out.println("TEST PASSED");
+            System.out.println("AMAZON TEST PASSED");
         }else{
-            System.out.println("TEST FAILED");
+            System.out.println("AMAZON TEST FAILED");
         }
 
         driver.navigate().back();
