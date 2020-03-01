@@ -43,6 +43,9 @@ public class BasicNavigation {
         Thread.sleep(3000);
         System.out.println("Title: " + driver.getTitle());
 
+        driver.navigate().refresh(); //to reload
+        Thread.sleep(3000);
+
         driver.close(); // to close browser
     }
 
