@@ -17,9 +17,12 @@ public class RadioButtonsTest {
 
         if(blackButton.isDisplayed() && blackButton.isEnabled()) {
             blackButton.click();
+            System.out.println("CLICKED ON BLACK BUTTON");
         }else{
             System.out.println("FAILED TO CLICK ON BLACK BUTTON");
         }
+
+        BrowserUtils.wait(2);
 
         if(blackButton.isSelected()){
             System.out.println("TEST PASSED");
