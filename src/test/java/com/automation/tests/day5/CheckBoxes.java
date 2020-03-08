@@ -18,16 +18,16 @@ public class CheckBoxes {
         BrowserUtils.wait(2);
 
         List<WebElement>checkBoxes = driver.findElements(By.tagName("input"));
-        checkBoxes.get(0).click();
-        BrowserUtils.wait(2);
-
-        if(checkBoxes.get(1).isDisplayed() && checkBoxes.get(1).isEnabled() && (!checkBoxes.get(1).isSelected())) {
-            checkBoxes.get(1).click();
-            System.out.println("Clicked on button");
-        }else{
-            System.out.println("Didn't have to click on 2nd checkbox");
-        }
-        BrowserUtils.wait(2);
+//        checkBoxes.get(0).click();
+//        BrowserUtils.wait(2);
+//
+//        if(checkBoxes.get(1).isDisplayed() && checkBoxes.get(1).isEnabled() && (!checkBoxes.get(1).isSelected())) {
+//            checkBoxes.get(1).click();
+//            System.out.println("Clicked on button");
+//        }else{
+//            System.out.println("Didn't have to click on 2nd checkbox");
+//        }
+//        BrowserUtils.wait(2);
 
         for (int i = 0; i < checkBoxes.size(); i++) {
             if(checkBoxes.get(i).isDisplayed() && checkBoxes.get(i).isEnabled() && (!checkBoxes.get(i).isSelected())) {
@@ -39,6 +39,15 @@ public class CheckBoxes {
                 BrowserUtils.wait(2);
             }
         }
+        //for (WebElement eachCheckBox:checkBoxes
+        //     ) {
+        //    if (!eachCheckBox.isSelected()){
+        //  eachCheckBox.click();
+        //    }else {
+        //        System.out.println("already selected");
+        //    }
+        //    BrowserUnits.wait(2);
+        //}
 
         driver.quit();
     }
