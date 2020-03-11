@@ -47,6 +47,28 @@ public class Alerts {
             System.out.println("Actual:   "+actual2);
         }
 
+        buttons.get(2).click();
+        BrowserUtils.wait(3);
+        String input = "Hello, World";
+        driver.switchTo().alert().sendKeys(input);
+        BrowserUtils.wait(10);
+        driver.switchTo().alert().accept();
+        BrowserUtils.wait(3);
+
+        String expected3 = "You entered: " + input;
+        String actual3 = driver.findElement(By.id("result")).getText();
+        if(expected3.endsWith(actual3)){
+            System.out.println("TEST PASSED");
+        }else {
+            System.out.println("TEST FAILED");
+            System.out.println("Expected: "+expected3);
+            System.out.println("Actual:   "+actual3);
+        }
+
+
+
+
+
         driver.quit();
     }
 }
