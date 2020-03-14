@@ -30,8 +30,30 @@ public class SearchTests {
             if(!var.isEmpty()) {
                 System.out.println(var);
                Assert.assertTrue(var.toLowerCase().contains("java"));
+              //  System.out.println(var.toLowerCase());
+              //  System.out.println();
             }
         }
+    }
+
+    @Test(description = "Search for Java book on Amazon")
+    public void amazonSearchTest(){
+       driver.get("http://amazon.com");
+       BrowserUtils.wait(2);
+       driver.findElement(By.id("twotabsearchtextbox")).sendKeys("Java", Keys.ENTER);
+       BrowserUtils.wait(2);
+       List<WebElement>searchItems = driver.findElements(By.tagName("h2"));
+
+       searchItems.get(0).click();
+       BrowserUtils.wait(2);
+
+       WebElement productTitle = driver.findElement(By.id("title"));
+       String productTitleString = productTitle.getText();
+        System.out.println(productTitleString);
+
+        Assert.assertTrue(productTitleString.contains("Java"));
+
+
     }
 
     @BeforeMethod
