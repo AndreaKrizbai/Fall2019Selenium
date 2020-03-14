@@ -1,5 +1,8 @@
 package com.automation.tests.day8;
 
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
 public class UnitTestPractice {
     public static void main(String[] args) {
        // System.out.println(reverseString("apple"));
@@ -7,9 +10,23 @@ public class UnitTestPractice {
         String toReverse = "abc";
         String expected = "cba";
         String actual = reverseString(toReverse);
+
+        verifyEquals(expected, actual);
     }
 
+    @Test(description = "Verify if method can reverse a string")
+    public void test(){
+        String expected = "elpp";
+        String actual = reverseString("apple");
+        Assert.assertEquals(actual, expected);
+    }
 
+    @Test
+    public void test2(){
+        String expected = "rac";
+        String actual = reverseString("car");
+        Assert.assertEquals(actual,expected);
+    }
 
 
 
