@@ -24,6 +24,7 @@ public class VehiclesPageTests {
     private By passwordBy = By.id("prependedInput2");
     private By fleetBy = By.xpath("//span[@class='title title-level-1' and contains(text(),'Fleet')]");
     private By subtitleBy = By.className("oro-subtitle");
+    private By pageNumberBy = By.cssSelector("input[type='number']");
 
     @Test
     public void verifyPageSubTitle(){
@@ -34,7 +35,7 @@ public class VehiclesPageTests {
         Actions actions = new Actions(driver);
         actions.moveToElement(driver.findElement(fleetBy)).perform();
         BrowserUtils.wait(2);
-
+            //  actions.moveToElement(driver.findElement(By.linkText("Vehicles"))).perform();
         driver.findElement(By.linkText("Vehicles")).click();
         BrowserUtils.wait(5);
        // WebElement subTitleElement = driver.findElement(subtitleBy);
@@ -44,6 +45,21 @@ public class VehiclesPageTests {
         Assert.assertEquals(expected,actual);
     }
 
+    @Test
+    public void verifyPageNumber(){
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(fleetBy)).perform();
+        BrowserUtils.wait(2);
+
+        driver.findElement(By.linkText("Vehicles")).click();
+        BrowserUtils.wait(5);
+       System.out.println(driver.findElement(By.cssSelector("input[type='number']")).getAttribute("value"));
+        String expected = "1";
+        String actual = driver.findElement(pageNumberBy).getAttribute("value");
+        Assert.assertEquals(expected,actual,"Page number not correct");
+
+
+    }
 
 
 
