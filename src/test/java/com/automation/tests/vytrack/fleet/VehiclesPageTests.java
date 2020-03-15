@@ -8,6 +8,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -26,8 +27,14 @@ public class VehiclesPageTests {
 
     @Test
     public void verifyPageSubTitle(){
-        driver.findElement(fleetBy).click();
+        //click on fleet
+       // driver.findElement(fleetBy).click();
+
+        //move to element instead of click
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(fleetBy)).perform();
         BrowserUtils.wait(2);
+
         driver.findElement(By.linkText("Vehicles")).click();
         BrowserUtils.wait(5);
        // WebElement subTitleElement = driver.findElement(subtitleBy);
