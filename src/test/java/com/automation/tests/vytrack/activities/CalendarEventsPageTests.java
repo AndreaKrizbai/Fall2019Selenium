@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 public class CalendarEventsPageTests {
@@ -78,7 +79,7 @@ public class CalendarEventsPageTests {
         String actualDate = driver.findElement(startDateBy).getAttribute("value");
         Assert.assertEquals(actualDate,expectedDate);
 
-        String expectedTime = LocalTime.now().format(DateTimeFormatter.ofPattern("h:m a"));
+        String expectedTime = LocalTime.now(ZoneId.of("GMT-7")).format(DateTimeFormatter.ofPattern("h:m a"));
         String actualTime = driver.findElement(startTimeBy).getAttribute("value");
         Assert.assertEquals(actualTime, expectedTime);
     }
