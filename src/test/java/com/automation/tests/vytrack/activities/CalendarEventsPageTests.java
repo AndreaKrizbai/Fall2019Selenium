@@ -12,7 +12,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class CallsPageTests {
+public class CalendarEventsPageTests {
     private By usernameBy = By.id("prependedInput");
     private By passwordBy = By.id("prependedInput2");
     private WebDriver driver;
@@ -21,7 +21,7 @@ public class CallsPageTests {
     private String storeManagerUserName="storemanager85";
     private String storeManagerPassword="UserUser123";
     private By activitiesBy = By.xpath("//span[@class='title title-level-1' and contains(text(),'Activities')]");
-    private By logCallBtnBy = By.cssSelector("a[title='Log call']");
+    private By createCalendarBtnBy = By.cssSelector("a[title='Create Calendar event']");
 
 
     @BeforeMethod
@@ -37,14 +37,14 @@ public class CallsPageTests {
         BrowserUtils.wait(5);
         actions.moveToElement(driver.findElement(activitiesBy)).perform();
         BrowserUtils.wait(2);
-        driver.findElement(By.linkText("Calls")).click();
+        driver.findElement(By.linkText("Calendar Events")).click();
         BrowserUtils.wait(5);
     }
 
     @Test
-    public void verifyLogCallButton(){
-        WebElement logCallBtnElement = driver.findElement(logCallBtnBy);
-        Assert.assertTrue(logCallBtnElement.isDisplayed());
+    public void verifyCreateCalendarButton(){
+        WebElement createCalendarBtnElement = driver.findElement(createCalendarBtnBy);
+        Assert.assertTrue(createCalendarBtnElement.isDisplayed());
 
     }
 
