@@ -18,6 +18,7 @@ public class ActionsTests {
     @BeforeMethod
     public void setup(){
         driver= DriverFactory.createDriver("chrome");
+        driver.manage().window().maximize();
         actions = new Actions(driver);
     }
 
@@ -42,6 +43,44 @@ public class ActionsTests {
         actions.moveToElement(img1).perform();
         WebElement imgText1 = driver.findElement(By.xpath("//h5[text()='name: user1']"));
         Assert.assertTrue(imgText1.isDisplayed());
+
+        //move to second image
+        BrowserUtils.wait(2);
+        actions.moveToElement(img2).perform();
+        WebElement imgText2 = driver.findElement(By.xpath("//h5[text()='name: user2']"));
+        Assert.assertTrue(imgText2.isDisplayed());
+    }
+    @Test
+    public void jqueryMenuTest(){
+        driver.get("http://practice.cybertekschool.com/jqueryui/menu#");
+        WebElement enabledButton = driver.findElement(By.id("ui-id-3"));
+        WebElement downloadsButton = driver.findElement(By.id("ui-id-4"));
+        WebElement pdfButton = driver.findElement(By.id("ui-id-5"));
+//        actions.moveToElement(enabledButton).pause(1000).moveToElement(downloadsButton)
+//                .pause(1000).moveToElement(pdfButton).pause(1000).build().perform();
+//        BrowserUtils.wait(2);
+//        pdfButton.click();
+//        BrowserUtils.wait(2);
+        actions.moveToElement(enabledButton).pause(1000).
+                moveToElement(downloadsButton).pause(1000).
+                click(pdfButton).build().perform();
+    }
+
+    @Test
+    public void dragAndDropTest(){
+        driver.get("https://demos.telerik.com/kendo-ui/dragdrop/index");
+        BrowserUtils.wait(3);
+        WebElement earth = driver.findElement(By.id("droptarget"));
+        WebElement moon = driver.findElement(By.id("draggable"));
+
+        actions.dragAndDrop(moon,earth).perform();
+        BrowserUtils.wait(3);
+
+        String expected = "You did great!";
+        String actual = earth.getText();
+
+        Assert.assertEquals(actual,expected);
+
     }
 
     @AfterMethod
