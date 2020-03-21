@@ -70,6 +70,27 @@ public class JSExecutor2 {
         Assert.assertEquals(subheader, "Welcome to the Secure Area. When you are done click logout below.");
     }
 
+    @Test
+    public void scrollToElement(){
+        BrowserUtils.wait(2);
+        WebElement link = driver.findElement(By.linkText("Cybertek School"));
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true)", link);
+        BrowserUtils.wait(2);
+    }
+
+    @Test
+    public void scrollTest(){
+        driver.navigate().to("http://practice.cybertekschool.com/infinite_scroll");
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        BrowserUtils.wait(2);
+        for (int i = 0; i < 15; i++) {
+            js.executeScript("window.scrollBy(0,1000)");
+            BrowserUtils.wait(1);
+        }
+    }
+
     @AfterMethod
     public void teardown(){
         BrowserUtils.wait(2);
