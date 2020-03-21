@@ -42,12 +42,32 @@ public class JSExecutor2 {
         BrowserUtils.wait(2);
         WebElement button6 = driver.findElement(By.id("disappearing_button"));
         js.executeScript("arguments[0].click()", button6);
-//        js.executeScript("arguments[0].click()", link, button6);
-//        BrowserUtils.wait(5);
-//        js.executeScript("arguments[1].click()", link, button6);
         BrowserUtils.wait(2);
         WebElement result = driver.findElement(By.id("result"));
         Assert.assertEquals(result.getText(),"Now it's gone!");
+    }
+
+    @Test
+    public void textInputTest(){
+        driver.findElement(By.linkText("Form Authentication")).click();
+        BrowserUtils.wait(3);
+
+        WebElement username = driver.findElement(By.name("username"));
+        WebElement password = driver.findElement(By.name("password"));
+        WebElement loginbtn = driver.findElement(By.id("wooden_spoon"));
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        js.executeScript("arguments[0].setAttribute('value', 'tomsmith')", username);
+        js.executeScript("arguments[0].setAttribute('value', 'SuperSecretPassword')", password);
+        js.executeScript("arguments[0].click()", loginbtn);
+
+        BrowserUtils.wait(3);
+
+        String subheader = js.executeScript("return document.getElementsByClassName('subheader')[0].textContent").toString();
+//        String actual = driver.findElement(By.tagName("h4")).getText();
+//        Assert.assertEquals(actual, "Welcome to the Secure Area. When you are done click logout below.");
+        Assert.assertEquals(subheader, "Welcome to the Secure Area. When you are done click logout below.");
     }
 
     @AfterMethod
