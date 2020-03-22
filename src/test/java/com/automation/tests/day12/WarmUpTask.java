@@ -21,6 +21,7 @@ public class WarmUpTask {
     @Test
     public void verifyTableSort(){
         driver.get("http://practice.cybertekschool.com/tables");
+        BrowserUtils.wait(2);
         driver.findElement(By.xpath("//table[1]//*[text()='Last Name']")).click();
         BrowserUtils.wait(2);
 
