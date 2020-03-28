@@ -11,7 +11,9 @@ public class Driver {
     private static WebDriver driver;
 
     //so no one can create object of Driver class, everyone should call static getter method instead
-    private Driver(){}
+    private Driver(){
+
+    }
 
     public static WebDriver getDriver(){
         if(driver==null){
