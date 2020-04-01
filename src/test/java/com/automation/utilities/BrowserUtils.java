@@ -10,7 +10,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLOutput;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class BrowserUtils {
@@ -75,10 +77,12 @@ public class BrowserUtils {
     }
 
     public static String getScreenshot(String name) {
-        String path = System.getProperty("user.dir") + "/test-output/screenshots/" + name +".png";
+       name = (new Date().toString() + "_" + name).replace(":", "-");
+       // name = new Date().toString().replace(" ", "_").replace(":", "-") + "_" + name;
+        String path = System.getProperty("user.dir") + "\\test-output\\screenshots\\" + name +".png";
         System.out.println("Screenshot is here: " + path);
         TakesScreenshot takesScreenshot = (TakesScreenshot) Driver.getDriver();
-        //screenshot itself
+        //take a screenshot of web browser and save it as a file
         File source = takesScreenshot.getScreenshotAs(OutputType.FILE);
         //where screenshot will be saved
         File destination = new File(path);
