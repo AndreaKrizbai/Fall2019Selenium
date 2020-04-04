@@ -5,6 +5,7 @@ import com.automation.utilities.BrowserUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -29,6 +30,51 @@ public class CalendarEventsPage extends AbstractPageBase {
 
     @FindBy(className = "grid-header-cell__label")
     private List<WebElement> columnNames;
+
+    @FindBy(css = "iframe[id^='oro_calendar_event_form_description-uid']")
+    private WebElement descriptionFrame;
+
+    @FindBy(css = "[id^='oro_calendar_event_form_title-uid']")
+    private WebElement title;
+
+    @FindBy(id = "tinymce")
+    private WebElement descriptionTextArea;
+
+    @FindBy(css = "[class='btn-group pull-right'] > button")
+    private WebElement saveAndClose;
+
+    @FindBy(xpath = "(//div[@class='control-label'])[1]")
+    private WebElement generalInfoTitle;
+
+    @FindBy(xpath = "//label[text()='Description']/following-sibling::div//div")
+    private WebElement generalInfoDescription;
+
+    public void enterCalendarEventTitle(String titleValue){
+        BrowserUtils.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.visibilityOf(title)).sendKeys(titleValue);
+    }
+
+    public void enterCalendarEventDescription(String description){
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(descriptionFrame));
+        descriptionTextArea.sendKeys(description);
+        driver.switchTo().defaultContent();//exit from the frame
+    }
+
+    public void clickOnSaveAndClose(){
+        wait.until(ExpectedConditions.elementToBeClickable(saveAndClose)).click();
+    }
+
+    public String getGeneralInfoTitleText(){
+        BrowserUtils.waitForPageToLoad(10);
+        return generalInfoTitle.getText();
+    }
+
+    public String getGeneralInfoDescriptionText(){
+        BrowserUtils.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//label[text()='Description']/following-sibling::div//div")));
+        return generalInfoDescription.getText();
+    }
+//####################################################################
 
     public List<String>getColumnNames(){
         BrowserUtils.waitForPageToLoad(10);

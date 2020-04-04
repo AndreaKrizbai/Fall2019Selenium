@@ -19,7 +19,7 @@ public class NewLoginTests extends AbstractTestBase {
         //wait.until(ExpectedConditions.titleContains("Dashboard"));
         //Driver.getDriver().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         BrowserUtils.wait(3);
-        Assert.assertEquals(Driver.getDriver().getTitle(),"Dash");
+        Assert.assertEquals(Driver.getDriver().getTitle(),"Dashboard");
         //if assertion passed, it will set test status in report to passed
         test.pass("Page title Dashboard was verified");
     }
@@ -31,6 +31,7 @@ public class NewLoginTests extends AbstractTestBase {
         LoginPage loginPage = new LoginPage();
         loginPage.login("wrong", "wrong");
         test.info("login as ");
+        BrowserUtils.wait(2);
         Assert.assertEquals(loginPage.getWarningMessageText(), "Invalid user name or password.");
         //take a screenshot
         BrowserUtils.getScreenshot("warning_message");
@@ -44,7 +45,8 @@ public class NewLoginTests extends AbstractTestBase {
         LoginPage loginPage = new LoginPage();
         loginPage.login(userName, password);
         test.info("Login as " + userName);//log some steps
-        Assert.assertEquals(Driver.getDriver().getTitle(), "Dashboards");
+        BrowserUtils.wait(2);
+        Assert.assertEquals(Driver.getDriver().getTitle(), "Dashboard");
         test.pass("Page title Dashboard was verified");
     }
 
