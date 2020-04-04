@@ -17,23 +17,6 @@ public class NewCalendarEventsTests extends AbstractTestBase {
     LoginPage loginPage = new LoginPage();
     CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
 
-//    @Test
-//    public void defaultOptionsTest(){
-//        test = report.createTest("Verify default login options");
-//        LoginPage loginPage = new LoginPage();
-//        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
-//
-//        loginPage.login();
-//        calendarEventsPage.navigateTo("Activities", "Calendar Events");
-//        calendarEventsPage.clickToCreateCalendarEvent();
-//        Assert.assertEquals(calendarEventsPage.getOwnerName(), calendarEventsPage.getCurrentUserName());
-//        String actualStartDate = calendarEventsPage.getStartDate();
-//        String expectedStartDate = DateTimeUtilities.getCurrentDate("MMM d, yyyy");
-//        Assert.assertEquals(actualStartDate, expectedStartDate);
-//
-//        test.pass("Default options verified");
-//
-//    }
 @Test
 public void defaultOptionsTest() {
     test = report.createTest("Verify default login options");
@@ -49,10 +32,6 @@ public void defaultOptionsTest() {
     Assert.assertEquals(actualStartDate, expectedStartDate);
     test.pass("Default options verified");
 }
-
-
-
-
 
     @Test
     public void timeDifference(){
