@@ -50,67 +50,69 @@ public class CalendarEventsPage extends AbstractPageBase {
     private WebElement generalInfoDescription;
 
     public void enterCalendarEventTitle(String titleValue){
-        BrowserUtils.waitForPageToLoad(20);
+        BrowserUtils.waitForPageToLoad(25);
         wait.until(ExpectedConditions.visibilityOf(title)).sendKeys(titleValue);
+        BrowserUtils.wait(2);
     }
 
     public void enterCalendarEventDescription(String description){
-        BrowserUtils.waitForPageToLoad(20);
+        BrowserUtils.waitForPageToLoad(25);
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(descriptionFrame));
         descriptionTextArea.sendKeys(description);
         driver.switchTo().defaultContent();//exit from the frame
+        BrowserUtils.wait(2);
     }
 
     public void clickOnSaveAndClose(){
-        BrowserUtils.waitForPageToLoad(20);
+        BrowserUtils.waitForPageToLoad(25);
         wait.until(ExpectedConditions.elementToBeClickable(saveAndClose)).click();
     }
 
     public String getGeneralInfoTitleText(){
-        BrowserUtils.waitForPageToLoad(20);
+        BrowserUtils.waitForPageToLoad(25);
         return generalInfoTitle.getText();
     }
 
     public String getGeneralInfoDescriptionText(){
-        BrowserUtils.waitForPageToLoad(20);
+        BrowserUtils.waitForPageToLoad(25);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//label[text()='Description']/following-sibling::div//div")));
         return generalInfoDescription.getText();
     }
 //####################################################################
 
     public List<String>getColumnNames(){
-        BrowserUtils.waitForPageToLoad(10);
+        BrowserUtils.waitForPageToLoad(25);
         return BrowserUtils.getTextFromWebElements(columnNames);
     }
 
     public String getOwnerName(){
-        BrowserUtils.waitForPageToLoad(10);
+        BrowserUtils.waitForPageToLoad(25);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("select2-chosen")));
         wait.until(ExpectedConditions.visibilityOf(owner));
         return owner.getText().trim();
     }
 
     public void clickToCreateCalendarEvent(){
-        BrowserUtils.waitForPageToLoad(10);
+        BrowserUtils.waitForPageToLoad(25);
         wait.until(ExpectedConditions.elementToBeClickable(createCalendarEvent)).click();
-        BrowserUtils.waitForPageToLoad(10);
+        BrowserUtils.waitForPageToLoad(25);
     }
 
     public String getStartDate(){
-        BrowserUtils.waitForPageToLoad(10);
+        BrowserUtils.waitForPageToLoad(25);
         wait.until(ExpectedConditions.visibilityOf(startDate));
         //BrowserUtils.scrollTo(startDate);
         return startDate.getAttribute("value");
     }
 
     public String getStartTime(){
-        BrowserUtils.waitForPageToLoad(10);
+        BrowserUtils.waitForPageToLoad(25);
         wait.until(ExpectedConditions.visibilityOf(startTime));
         return startTime.getAttribute(("value"));
     }
 
     public String getEndTime(){
-        BrowserUtils.waitForPageToLoad(10);
+        BrowserUtils.waitForPageToLoad(25);
         wait.until(ExpectedConditions.visibilityOf(endTime));
         return endTime.getAttribute(("value"));
     }
