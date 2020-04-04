@@ -10,6 +10,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 public class NewCalendarEventsTests extends AbstractTestBase {
@@ -52,7 +53,9 @@ public class NewCalendarEventsTests extends AbstractTestBase {
 
     @Test(dataProvider = "calendarEvents")
     public void createCalendarEventTest(String title, String description) {
-        test = report.createTest("Create calendar event");
+        LoginPage loginPage = new LoginPage();
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+        test = report.createTest("Create calendar event for " + title);
         loginPage.login();
         calendarEventsPage.navigateTo("Activities", "Calendar Events");
         calendarEventsPage.clickToCreateCalendarEvent();
@@ -68,7 +71,9 @@ public class NewCalendarEventsTests extends AbstractTestBase {
     @DataProvider
     public Object[][] calendarEvents(){
         return new Object[][]{
-                {"Daily stand-up", "Scrum meeting to provide updates"}
+                {"Daily Stand-up", "Scrum meeting to provide updates"},
+                {"Daily Review", "Scrum meeting where team discusses previous sprint"},
+                {"Daily Planning", "Scrum meeting where team discusses upcoming sprint backlog"}
         };
     }
 }
