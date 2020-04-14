@@ -14,20 +14,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-<!--    <build>-->
-<!--        <plugins>-->
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-compiler-plugin</artifactId>-->
-<!--                <configuration>-->
-<!--                    <source>8</source>-->
-<!--                    <target>8</target>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
-<!--        </plugins>-->
-<!--    </build>-->
-
-    <!--to fix java 5 version issue -->
     <build>
         <plugins>
             <plugin>
@@ -75,6 +61,12 @@
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
             <version>4.0.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>4.1.2</version>
         </dependency>
 
     </dependencies>
