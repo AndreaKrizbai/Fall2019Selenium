@@ -102,7 +102,41 @@ public class ExcelUtil {
         }
         return columns;
     }
+    public void setCellData(String value, String columnName, int row, boolean passOrNot){
+        Cell cell;
+        int column = getColumnsNames().indexOf(columnName);
+        setCellData(value, row, column);
+        CellStyle style = workBook.createCellStyle();
 
+        if(passOrNot) {
+            style.setFillBackgroundColor(IndexedColors.BRIGHT_GREEN.getIndex());
+            style.setFillPattern(FillPatternType.LEAST_DOTS);
+        }else{
+            style.setFillBackgroundColor(IndexedColors.RED1.getIndex());
+            style.setFillPattern(FillPatternType.LEAST_DOTS);
+        }
+
+        try {
+            cell = workSheet.getRow(row).getCell(column);
+
+            if (cell == null) {
+                cell = workSheet.getRow(row).createCell(column);
+                cell.setCellValue(value);
+                cell.setCellStyle(style);
+            } else {
+                cell.setCellValue(value);
+                cell.setCellStyle(style);
+            }
+            FileOutputStream fileOut = new FileOutputStream(path);
+            workBook.write(fileOut);
+
+            fileOut.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
     /**
      * Write something into excel file
      * @param value what should be written
@@ -136,6 +170,7 @@ public class ExcelUtil {
         int column = getColumnsNames().indexOf(columnName);
         setCellData(value, row, column);
     }
+
 
     public int columnCount() {
         return workSheet.getRow(0).getLastCellNum();
