@@ -1,7 +1,6 @@
 package com.automation.utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import net.bytebuddy.implementation.bind.annotation.RuntimeType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
